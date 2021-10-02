@@ -2,7 +2,7 @@ import React from "react";
 
 const Cart = () => {
   return (
-    <div>
+    <div className="ml-auto">
       <h1>This is cart</h1>
     </div>
   );

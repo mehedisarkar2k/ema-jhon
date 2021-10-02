@@ -1,9 +1,12 @@
 import React from "react";
+import Product from "./Product/Product";
 
-const Products = () => {
+const Products = ({ products }) => {
   return (
-    <div>
-      <h1>This is all products section</h1>
+    <div className="flex flex-col">
+      {products.map((product) => (
+        <Product key={product.key} product={product} />
+      ))}
     </div>
   );
 };

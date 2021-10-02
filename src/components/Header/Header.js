@@ -42,13 +42,16 @@ const Header = () => {
           </NavLink>
         </li>
 
-        <li className="ml-auto">
+        <li className="ml-auto relative">
           <NavLink
             className="hover:text-yellow-500 transition duration-200  text-xl px-4 py-2 "
             to="/review"
           >
             <FontAwesomeIcon icon={faShoppingCart} size="lg" />
           </NavLink>
+          <span className="absolute -top-2 right-0 h-5 w-5 rounded-full bg-yellow-500 text-white text-xs flex items-center justify-center font-bold">
+            0
+          </span>
         </li>
       </nav>
     </div>
