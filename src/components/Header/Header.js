@@ -7,8 +7,8 @@ import Logo from "../../logo.png";
 const Header = () => {
   return (
     <div>
-      <div className="h-20 mx-auto ">
-        <img className="inline-block h-full" src={Logo} alt="Ema Jhon Logo" />
+      <div className="mx-auto py-2">
+        <img className="inline-block h-16" src={Logo} alt="Ema Jhon Logo" />
       </div>
 
       <nav className="bg-black text-gray-100 flex p-4 px-8 list-none">
