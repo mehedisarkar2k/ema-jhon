@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getDB, setDB } from "../../functions/getDB";
 import Cart from "./Cart/Cart";
 import Products from "./Products/Products";
 
@@ -15,6 +16,7 @@ const Shop = () => {
       if (key === item.key) {
         item.quantity = parseInt(item.quantity) + 1;
         setCart(tempCart);
+        setDB(tempCart);
         return;
       }
     }
@@ -22,6 +24,7 @@ const Shop = () => {
     selectItem[0].quantity = 1;
     tempCart = [...cart, ...selectItem];
     setCart(tempCart);
+    setDB(tempCart);
   };
 
   useEffect(() => {
@@ -31,6 +34,24 @@ const Shop = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+
+  useEffect(() => {
+    const local = getDB();
+    let storageItem = [];
+    if (local) {
+      for (const key in local) {
+        const item = products.find((pd) => pd.key === key);
+        if (item) {
+          item.quantity = local[key];
+
+          storageItem.push(item);
+        }
+      }
+    }
+
+    setCart(storageItem);
+  }, [products]);
+
   return (
     <div className="flex container mt-4 mx-auto relative">
       <div className="w-3/4 border-r-2 pr-2 border-gray-200">
