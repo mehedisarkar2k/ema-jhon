@@ -1,12 +1,11 @@
 import React from "react";
 
-const Product = ({ product }) => {
-  const { img, name, category, wholePrice, priceFraction, stock, features } =
-    product;
+const Product = ({ product, addToCartHandler }) => {
+  const { key, img, name, category, price, stock, features } = product;
 
   return (
     <div className="mb-4 rounded-md p-4 flex shadow-lg">
-      <div className="w-1/3 border-r border-gray-300 p-4">
+      <div className="w-1/3 border-r-2 border-gray-200 p-4">
         <img className="w-full object-cover hover:scale-125" src={img} alt="" />
       </div>
 
@@ -17,15 +16,16 @@ const Product = ({ product }) => {
           <div className="w-1/2">
             <h5>Category: {category}</h5>
             <h6>
-              Price:{" "}
-              {(parseInt(wholePrice) + parseFloat(priceFraction) / 100).toFixed(
-                2
-              )}
+              Price: &#36;
+              {price}
             </h6>
             <small className="text-yellow-600 font-black text-sm">
               Only {stock} left in stock - order soon!
             </small>
-            <button className="px-4 py-1 bg-yellow-500 rounded-xl text-xl mt-4 hover:bg-yellow-400 hover:shadow-lg transition active:bg-yellow-600">
+            <button
+              onClick={() => addToCartHandler(key)}
+              className="px-4 py-1 bg-yellow-500 rounded-xl text-xl mt-4 hover:bg-yellow-400 hover:shadow-lg transition active:bg-yellow-600"
+            >
               Add to cart
             </button>
           </div>
@@ -33,7 +33,11 @@ const Product = ({ product }) => {
             <p className="text-yellow-500 text-xl font-black">* * * * *</p>
 
             <div className="">
-              <h5 className="text-xl text-yellow-500 underline">Features</h5>
+              {features.length ? (
+                <h5 className="text-xl text-yellow-500 underline">Features</h5>
+              ) : (
+                ""
+              )}
               {features.map((ft, index) => (
                 <small key={index}>
                   <li>
